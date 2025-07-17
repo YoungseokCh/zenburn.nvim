@@ -13,39 +13,47 @@ local set_hl_ns = vim.api.nvim__set_hl_ns or vim.api.nvim_set_hl_ns
 local ns = 0
 
 M.set_highlights = function(highlights)
-    for group, highlight in pairs(highlights) do
-        set_hl(ns, group, highlight)
-    end
+	for group, highlight in pairs(highlights) do
+		set_hl(ns, group, highlight)
+	end
 end
 
 function M.clear_namespace()
-    vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
-    set_hl_ns(0)
+	vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+	set_hl_ns(0)
 end
 
-M.setup = function()
-    M.clear_namespace()
+function M.set_background(opts)
+	opts = opts or {}
+	if opts.background == nil then
+		opts.background = true
+	end
+	if not background then
+		vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+		vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+	end
+end
 
-    vim.o.background = "dark"
-    vim.o.termguicolors = true
+M.setup = function(opts)
+	M.clear_namespace()
+	vim.o.termguicolors = true
 
-    local all_highlights = require("zenburn.highlights")
-    for _, highlights in ipairs(all_highlights) do
-        M.set_highlights(highlights)
-    end
-    set_hl_ns(ns)
+	local all_highlights = require("zenburn.highlights")
+	for _, highlights in ipairs(all_highlights) do
+		M.set_highlights(highlights)
+	end
+	set_hl_ns(ns)
 
-    vim.g.colors_name = M.name
+	vim.g.colors_name = M.name
 
-    vim.api.nvim_create_autocmd(
-        "ColorSchemePre",
-        {
-            callback = function()
-                M.clear_namespace()
-                return true
-            end
-        }
-    )
+	vim.api.nvim_create_autocmd("ColorSchemePre", {
+		callback = function()
+			M.clear_namespace()
+			return true
+		end,
+	})
+	M.set_background(opts)
 end
 
 return M
