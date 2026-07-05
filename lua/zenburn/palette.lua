@@ -12,7 +12,7 @@ return {
 	Debug = { fg="#bca3a3", bold=true, },
 	Define = { fg="#ffcfaf", bold=true, },
 	Delimiter = { fg="#8f8f8f", },
-	DiffAdd = { fg="#709080", bg="#313c36", bold=true, },
+	DiffAdd = { bg="#313c36", bold=true, },
 	DiffChange = { bg="#333333", },
 	DiffDelete = { fg="#333333", bg="#464646", },
 	DiffText = { fg="#ecbcbc", bg="#41363c", bold=true, },
@@ -79,5 +79,4 @@ return {
 	WildMenu = { bg="#2c302d", fg="#cbecd0", underline=true, },
 	WinSeparator = { fg="#dfaf8f", bg="#3f3f3f", },
 }
-
 
