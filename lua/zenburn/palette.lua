@@ -14,7 +14,7 @@ return {
 	Delimiter = { fg="#8f8f8f", },
 	DiffAdd = { bg="#313c36", bold=true, },
 	DiffChange = { bg="#333333", },
-	DiffDelete = { fg="#333333", bg="#464646", },
+	DiffDelete = { bg="#3f2f2f", },
 	DiffText = { fg="#ecbcbc", bg="#41363c", bold=true, },
 	Directory = { fg="#dcdccc", bold=true, },
 	ErrorMsg = { fg="#80d4aa", bg="#2f2f2f", bold=true, },
@@ -79,4 +79,3 @@ return {
 	WildMenu = { bg="#2c302d", fg="#cbecd0", underline=true, },
 	WinSeparator = { fg="#dfaf8f", bg="#3f3f3f", },
 }
-
